@@ -38,12 +38,75 @@ typedef struct{
 
 }Deportista;
 
+typedef char Deportes[6][30];
+
+void leeInformacion(FILE *arch, Deportista *a, int m[20]);
+
 int main()
 {
     Deportista deportistas[100];
     // Puede cambiar la declaración de este arreglo a donde lo considere necesario
-    char deporte[6][30] = {"Natación", "Atletismo", "Ciclismo", "Gimnasia", "Equitacion", "Esgrima"};
+    //char deporte[6][30] = {"Natación", "Atletismo", "Ciclismo", "Gimnasia", "Equitacion", "Esgrima"};
+    Deportes deporte = {"Natación", "Atletismo", "Ciclismo", "Gimnasia", "Equitacion", "Esgrima"};
 
+    int medallas[20];
+
+    FILE *archivo;
+
+    archivo = fopen("deportistas.txt", "r");
+    leeInformacion(archivo, deportistas, medallas);
+
+    
     return 0;
 }
 
+void leeInformacion(FILE *arch, Deportista *a, int m[20])
+{
+    int pudoLeer;
+    int i=0, cerrado;
+
+    do
+    {
+        
+        fscanf(arch, "%s", a->datos.nombre[i]);
+        fscanf(arch, "%s", a->datos.pais[i]);
+        fscanf(arch, "%s", a->deporte[i]);
+        pudoLeer = fscanf(arch, "%d", a->numMedallas);
+
+        m[i] = a->numMedallas;
+
+        i++;
+
+    }while (pudoLeer != EOF);
+
+    cerrado = fclose(arch);
+
+    if(cerrado == EOF) //fclose regresa EOF cuando no se puede cerrar correctamente    
+    {
+        printf("El archivo no se cerro bien");
+    }
+
+}
+
+void imprimeMedallas(FILE *arch, Deportista *a, int m[20])
+{
+    for (int i = 0; i < 6; i++)
+    {
+       switch (i)
+       {
+       case 1:
+           for(int j = 0; j < 15; i++)
+           {
+               if(a.deporte == "Natación")
+               {
+
+               }
+           }
+           break;
+       
+       default:
+           break;
+       }
+    }
+    
+}
